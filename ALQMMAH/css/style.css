@@ -1801,9 +1801,10 @@ input:focus, textarea:focus, select:focus {
 
 .timeline {
     position: relative;
-    max-width: 50rem;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 2.5rem 0;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .timeline::before {
@@ -1812,78 +1813,228 @@ input:focus, textarea:focus, select:focus {
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 0.25rem;
+    width: 4px;
     background-color: var(--primary-color);
     transform: translateX(-50%);
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 3.125rem;
+    margin-bottom: 50px;
     display: flex;
+    width: 100%;
 }
 
 .timeline-item:nth-child(odd) {
     justify-content: flex-end;
-    padding-right: 3.125rem;
+    padding-right: 80px;
 }
 
 .timeline-item:nth-child(even) {
     justify-content: flex-start;
-    padding-left: 3.125rem;
+    padding-left: 80px;
 }
 
 .timeline-year {
     position: absolute;
     top: 0;
-    width: 6.25rem;
-    height: 6.25rem;
+    width: 100px;
+    height: 100px;
     background-color: var(--primary-color);
     color: var(--light-gray);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 700;
     z-index: 2;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-item:nth-child(odd) .timeline-year {
-    right: -3.125rem;
+    right: -50px;
 }
 
 .timeline-item:nth-child(even) .timeline-year {
-    left: -3.125rem;
+    left: -50px;
 }
 
 .timeline-content {
-    width: calc(50% - 5rem);
+    width: calc(50% - 80px);
     background-color: var(--dark-gray);
-    padding: 1.875rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .timeline-content:hover {
-    transform: translateY(-0.3125rem);
-    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.625rem;
+    font-size: 20px;
+    margin-bottom: 10px;
     color: var(--primary-color);
     font-weight: 600;
 }
 
 .timeline-content p {
-    font-size: 0.9375rem;
+    font-size: 15px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
+}
+
+/* تحسينات للشاشات الكبيرة (أكثر من 1600px) */
+@media (min-width: 1600px) {
+    .timeline {
+        max-width: 1400px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        padding-right: 100px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        padding-left: 100px;
+    }
+    
+    .timeline-content {
+        width: calc(50% - 100px);
+    }
+}
+
+/* تحسينات للشاشات المتوسطة (أقل من 1200px) */
+@media (max-width: 1200px) {
+    .timeline {
+        max-width: 900px;
+    }
+    
+    .timeline-year {
+        width: 80px;
+        height: 80px;
+        font-size: 20px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-year {
+        right: -40px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-year {
+        left: -40px;
+    }
+    
+    .timeline-content {
+        width: calc(50% - 60px);
+        padding: 25px;
+    }
+}
+
+/* تحسينات للشاشات الصغيرة (أقل من 992px) */
+@media (max-width: 992px) {
+    .timeline {
+        max-width: 700px;
+    }
+    
+    .timeline-item {
+        margin-bottom: 40px;
+    }
+    
+    .timeline-year {
+        width: 70px;
+        height: 70px;
+        font-size: 18px;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+    }
+}
+
+/* تحسينات للشاشات الأصغر (أقل من 768px) */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 50px;
+        transform: none;
+    }
+    
+    .timeline-item {
+        justify-content: flex-start !important;
+        padding-left: 100px !important;
+        padding-right: 0 !important;
+        margin-bottom: 30px;
+    }
+    
+    .timeline-year {
+        width: 60px;
+        height: 60px;
+        left: 10px !important;
+        right: auto !important;
+        font-size: 16px;
+    }
+    
+    .timeline-content {
+        width: 100%;
+    }
+}
+
+/* تحسينات للشاشات الصغيرة جداً (أقل من 576px) */
+@media (max-width: 576px) {
+    .timeline {
+        padding: 0 15px;
+    }
+    
+    .timeline::before {
+        left: 40px;
+    }
+    
+    .timeline-item {
+        padding-left: 80px !important;
+    }
+    
+    .timeline-year {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 18px;
+    }
+    
+    .timeline-content p {
+        font-size: 14px;
+    }
+}
+
+/* تحسينات للشاشات الموبايل (أقل من 400px) */
+@media (max-width: 400px) {
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        padding-left: 60px !important;
+    }
+    
+    .timeline-year {
+        width: 40px;
+        height: 40px;
+        left: 5px !important;
+        font-size: 12px;
+    }
+    
+    .timeline-content {
+        padding: 12px;
+    }
 }
 
 .team-preview-grid {
